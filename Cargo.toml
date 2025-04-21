@@ -14,3 +14,7 @@ dotenv = "0.15.0"
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 tower-http = { version = "0.5", features = ["trace"] }
+jsonwebtoken = "9"
+chrono = { version = "0.4", features = ["serde"] }
+sha1 = "0.10"
+hex = "0.4"

@@ -1,7 +1,6 @@
 
 use mysql::params;
 use mysql::prelude::Queryable;
-use tracing::log::__private_api::log;
 use crate::model::entity::{User, UserInput};
 use crate::pkg::db::db_connection;
 use crate::error_handler::error_handler::ApiError;
