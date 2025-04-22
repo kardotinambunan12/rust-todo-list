@@ -1,23 +1,15 @@
 use axum::{Json, http::StatusCode};
+use axum::response::IntoResponse;
 use tracing::info;
+use crate::error_handler::error_handler::ApiError;
 use crate::model::user::{LoginInput, LoginResponse};
 use crate::pkg::jwt::generate_token;
 use crate::util::util::hash_password;
+use crate::service::auth::login_service::login_service;
 
-pub async fn login(Json(payload): Json<LoginInput>) -> Result<Json<LoginResponse>, (StatusCode, String)> {
-    println!("login");
-    let password = "password";
-    let hashed = hash_password(password);
-    info!("hashed: {}", hashed);
-        info!("hashed: {} {}", "LOG- TRC", "002");
-    //ambil db dari  untuk data  untuk melakukan validasi data
-    if payload.email == "admin@example.com" && payload.password == "password" {
-        let (token, exp) = generate_token(&payload.email).map_err(|_| (StatusCode::INTERNAL_SERVER_ERROR, "Token error".into()))?;
-        Ok(Json(LoginResponse {
-            token,
-            expired_at:exp,
-        }))
-    } else {
-        Err((StatusCode::UNAUTHORIZED, "Invalid credentials".into()))
-    }
+pub async fn login(Json(payload): Json<LoginInput>) -> Result<Json<LoginResponse>, ApiError> {
+    tracing::info!("Login attempt: {}", payload.email);
+
+    let response  = login_service(payload).await?;
+    Ok(Json(response))
 }

@@ -8,3 +8,9 @@ pub fn hash_password(password: &str) ->String{
     let result = hasher.finalize();
     hex::encode(result)
 }
+
+pub fn verify_password(password:&str, password_hash:&str) -> bool {
+  hash_password(password) == password_hash
+
+}
+

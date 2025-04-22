@@ -27,7 +27,6 @@ pub fn get_user_by_id(user_id: i32) -> Result<Option<User>, ApiError> {
         params! { "id" => user_id },
     ).map_err(|_| ApiError::InternalServerError)?;
 
-    // Convert tuple into User struct
     Ok(result.map(|(id, name)| User { id, name }))
 }
 

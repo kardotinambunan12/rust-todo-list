@@ -8,6 +8,7 @@ pub enum ApiError {
     NotFound,
     InternalServerError,
     BadRequest,
+    Unauthorized
 }
 
 impl ApiError {
@@ -16,6 +17,7 @@ impl ApiError {
             ApiError::NotFound => "Resource not found",
             ApiError::InternalServerError => "Internal server error",
             ApiError::BadRequest => "Bad request",
+            ApiError::Unauthorized => "Unauthorized",
         }
     }
 
@@ -24,6 +26,7 @@ impl ApiError {
             ApiError::NotFound => StatusCode::NOT_FOUND,
             ApiError::InternalServerError => StatusCode::INTERNAL_SERVER_ERROR,
             ApiError::BadRequest => StatusCode::BAD_REQUEST,
+            ApiError::Unauthorized => StatusCode::UNAUTHORIZED,
         }
     }
 }
