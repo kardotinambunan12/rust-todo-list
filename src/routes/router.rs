@@ -21,7 +21,7 @@ pub fn create_router() -> Router {
 
     Router::new()
         .route("/todo-list/users", get(get_all_users_controller))
-        .route("/todo-list/users/:id", get(get_user_by_id_controller))
+        .route("/todo-list/users/{id}", get(get_user_by_id_controller))
         .route("/todo-list/users/create", post(create_user_controller))
         .route("/login",post(login))
         .layer(TraceLayer::new_for_http())

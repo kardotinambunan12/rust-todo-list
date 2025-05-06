@@ -18,8 +18,14 @@ async fn main() {
     let app = router::create_router();
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    // tracing::info!("🚀 Server running at {}", addr);
+
+
+    /* tracing::info!("🚀 Server running at {}", addr); */
+    println!("#======*************************=========#");
+    println!("");
     println!("listening on http:// {}", addr);
+    println!("");
+    println!("#======*************************==========#");
 
     let listener = TcpListener::bind(addr).await.unwrap();
 

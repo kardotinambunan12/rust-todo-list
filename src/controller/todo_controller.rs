@@ -1,18 +1,14 @@
-
-use axum::{extract::Path,response::IntoResponse,http::StatusCode, Json};
-use crate::service::todo_service;
 use crate::error_handler::error_handler::ApiError;
 use crate::model::entity::{User, UserInput};
-
-
+use crate::service::todo_service;
+use axum::{extract::Path, http::StatusCode, response::IntoResponse, Json};
 
 pub async fn get_user_by_id_controller(Path(user_id): Path<i32>) -> Result<Json<User>, ApiError> {
     let user = todo_service::get_user_by_id_service(user_id)?;
     Ok(Json(user))
 }
 
-
-pub async fn get_all_users_controller() -> Result<Json<Vec<User>>, ApiError>  {
+pub async fn get_all_users_controller() -> Result<Json<Vec<User>>, ApiError> {
     todo_service::get_all_users().await
 }
 
