@@ -1,2 +1,6 @@
 /target
 .env
+.git
+.gitignore
+Dockerfile
+README.md
