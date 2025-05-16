@@ -17,7 +17,7 @@ use crate::routes::router;
 async fn main() {
     let app = router::create_router();
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
 
 
     /* tracing::info!("🚀 Server running at {}", addr); */
