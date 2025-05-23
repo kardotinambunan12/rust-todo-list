@@ -8,24 +8,19 @@ mod controller;
 mod middleware;
 mod util;
 
+
 use std::net::SocketAddr;
 use axum::serve;
 use tokio::net::TcpListener;
 use crate::routes::router;
-
+use crate::util::util::print_banner;
 #[tokio::main]
 async fn main() {
     let app = router::create_router();
-
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
-
-
+    
     /* tracing::info!("🚀 Server running at {}", addr); */
-    println!("#======*************************=========#");
-    println!("");
-    println!("listening on http:// {}", addr);
-    println!("");
-    println!("#======*************************==========#");
+    let addr= SocketAddr::from(([127, 0, 0, 1], 3000));
+    print_banner(&addr);
 
     let listener = TcpListener::bind(addr).await.unwrap();
 
