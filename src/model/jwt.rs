@@ -4,19 +4,20 @@ use chrono::{Utc, Duration};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Claims{
-    pub sub:String,
+    pub email:String,
     pub exp:usize,
+
 }
 
 impl Claims {
     pub fn new(email:&str)->Self{
         let expiration = Utc::now()
-            .checked_add_signed(Duration::hours(60))
+            .checked_add_signed(Duration::minutes(60))
             .expect("invalid timestamp")
             .timestamp();
 
         Claims{
-            sub:email.to_owned(),
+            email:email.to_owned(),
             exp:expiration as usize,
         }
     }

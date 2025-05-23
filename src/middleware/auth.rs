@@ -19,7 +19,7 @@ where
             .and_then(|v| v.to_str().ok());
 
         if let Some(auth_header) = auth_header {
-            if let Some(token) = auth_header.strip_prefix("Bearer") {
+            if let Some(token) = auth_header.strip_prefix("Bearer ") {
                 match validate_token(token) {
                     Ok(claims) => return Ok(Auth(claims)),
                     Err(_) => return Err((StatusCode::UNAUTHORIZED, "Token invalid".into())),

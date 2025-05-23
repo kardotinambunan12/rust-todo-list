@@ -11,6 +11,8 @@ use crate::controller::todo_controller::{
 };
 use crate::controller::auth_controller::{
     login,
+    register_user_controller
+
 };
 
 pub fn create_router() -> Router {
@@ -24,5 +26,6 @@ pub fn create_router() -> Router {
         .route("/todo-list/users/{id}", get(get_user_by_id_controller))
         .route("/todo-list/users/create", post(create_user_controller))
         .route("/login",post(login))
+        .route("/register", post(register_user_controller))
         .layer(TraceLayer::new_for_http())
 }
