@@ -5,6 +5,7 @@ use axum::{
     http::{request::Parts, StatusCode},
 };
 
+#[allow(dead_code)]
 pub struct Auth(pub Claims);
 
 impl<S> FromRequestParts<S> for Auth
