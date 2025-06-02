@@ -9,7 +9,6 @@ create table `todo-list`.users(
     primary key (id)
 )engine InnoDB;
 
-# drop table `todo-list`.users;
 
 select * from `todo-list`.users;
 
