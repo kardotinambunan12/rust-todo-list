@@ -19,7 +19,8 @@ async fn main() {
     let app = router::create_router();
     
     /* tracing::info!("🚀 Server running at {}", addr); */
-    let addr= SocketAddr::from(([127, 0, 0, 1], 3000));
+    // let addr= SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
     print_banner(&addr);
 
     let listener = TcpListener::bind(addr).await.unwrap();
