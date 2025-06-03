@@ -22,6 +22,6 @@ RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/
 COPY --from=builder /usr/src/app/target/release/todo-list /usr/local/bin/app
 
 USER appuser
-EXPOSE 8080
+EXPOSE 3000
 
 CMD ["/usr/local/bin/app"]
