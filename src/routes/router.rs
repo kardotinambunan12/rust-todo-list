@@ -36,5 +36,5 @@ pub fn create_router() -> Router {
 
 
 async fn index() -> &'static str {
-    "API Running on........!"
+    "API Running on........"
 }
