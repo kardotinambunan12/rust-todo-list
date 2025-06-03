@@ -37,9 +37,9 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            docker rm -f todo-app || true
-            docker pull getch12/todo-list:latest
-            docker run -d -p 3000:3000 --name todo-app getch12/todo-list:latest
+            sudo docker rm -f todo-app || true
+            sudo docker pull getch12/todo-list:latest
+            sudo docker run -d -p 3000:3000 --name todo-app getch12/todo-list:latest
 
 
       - name: Build Docker Image
