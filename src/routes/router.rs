@@ -25,7 +25,7 @@ pub fn create_router() -> Router {
         .init();
 
     Router::new()
-        .route("/", get(index))
+        .route("/", get(api_running))
         .route("/todo-list/users", get(get_all_users_controller))
         .route("/todo-list/users/{id}", get(get_user_by_id_controller))
         .route("/todo-list/users/create", post(create_user_controller))
@@ -35,6 +35,6 @@ pub fn create_router() -> Router {
 }
 
 
-async fn index() -> &'static str {
+async fn api_running() -> &'static str {
     "API Running ......."
 }

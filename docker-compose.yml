@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: todo_list
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    image: getch12/todo-list:latest
+    container_name: todo-app
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: mysql://root@mysql:3306/todo_list
+
+volumes:
+  mysql_data:
