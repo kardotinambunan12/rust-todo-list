@@ -45,7 +45,15 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            sudo docker rm -f todo-app || true
-            sudo docker pull getch12/todo-list:latest
-            sudo docker run -d -p 3000:3000 --name todo-app getch12/todo-list:latest
+            mkdir -p ~/todo-app
+            cd ~/todo-app
+
+            curl -sSL https://raw.githubusercontent.com/${{ github.repository }}/master/docker-compose.yml -o docker-compose.yml
+            docker pull getch12/todo-list:latest
+            docker compose down -v
+            docker compose up -d
+#            sudo docker rm -f todo-app || true
+#            sudo docker pull getch12/todo-list:latest
+#            sudo docker run -d -p 3000:3000 --name todo-app getch12/todo-list:latest
+
 
