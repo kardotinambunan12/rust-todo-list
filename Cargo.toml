@@ -23,3 +23,4 @@ base64 = "0.22.1"
 sha2 = "0.10.9"
 rand = { version = "0.8", features = ["std"] }
 rand_core = "0.6"
+uuid = { version = "1", features = ["v4"] }

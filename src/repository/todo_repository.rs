@@ -1,8 +1,10 @@
 use crate::error_handler::error_handler::ApiError;
+use std::{fs::File, io::Write, path::Path};
 use crate::model::entity::{User, UserInput};
 use crate::pkg::db::db_connection;
 use mysql::params;
 use mysql::prelude::Queryable;
+use uuid::Uuid;
 
 pub async fn get_all_user() -> Result<Vec<User>, ApiError> {
     let mut conn = db_connection();
@@ -50,4 +52,20 @@ pub async fn create_user(user: UserInput) -> Result<User, ApiError> {
         id,
         name: user.name,
     })
+}
+
+pub fn save_file(original_name: &str, data: &[u8]) -> Result<String, ApiError> {
+    let ext = Path::new(original_name)
+        .extension()
+        .and_then(|e| e.to_str())
+        .unwrap_or("png");
+
+    let unique_name = format!("{}.{}", Uuid::new_v4(), ext);
+    let path = format!("assets/images/{}", unique_name);
+
+    std::fs::create_dir_all("assets/images").map_err(|_| ApiError::InternalServerError)?;
+    let mut file = File::create(&path).map_err(|_| ApiError::InternalServerError)?;
+    file.write_all(data).map_err(|_| ApiError::InternalServerError)?;
+
+    Ok(unique_name)
 }

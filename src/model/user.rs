@@ -26,3 +26,16 @@ pub struct RegisterResponse {
     pub messages:String,
     pub status_code:i32,
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct UploadImageRequest{
+    pub filename:String,
+    pub image:String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct UploadImageResponse {
+    pub filename:String,
+    pub image:String,
+}
+

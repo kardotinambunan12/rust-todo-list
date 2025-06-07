@@ -7,6 +7,7 @@ use crate::controller::todo_controller::{
     get_all_users_controller,
     get_user_by_id_controller,
     create_user_controller,
+    upload_base64_image_controller
 
 };
 use crate::controller::auth_controller::{
@@ -31,6 +32,7 @@ pub fn create_router() -> Router {
         .route("/todo-list/users/create", post(create_user_controller))
         .route("/login",post(login))
         .route("/register", post(register_user_controller))
+        .route("/upload/base64", post(upload_base64_image_controller))
         .layer(TraceLayer::new_for_http())
 }
 
