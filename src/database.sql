@@ -1,19 +1,6 @@
-
-show databases;
-
-create database `todo-list`;
-
-create table `todo-list`.users(
-    id int not null auto_increment ,
-    name varchar(100),
-    primary key (id)
-)engine InnoDB;
-
-
-select * from `todo-list`.users;
-
-
-
-
-
-
+CREATE TABLE users (
+                       id INT PRIMARY KEY AUTO_INCREMENT,
+                       name VARCHAR(255) NOT NULL,
+                       email VARCHAR(255) NOT NULL UNIQUE,
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -9,7 +9,7 @@ use uuid::Uuid;
 pub async fn get_all_user() -> Result<Vec<User>, ApiError> {
     let mut conn = db_connection();
 
-    let result = conn.query_map("SELECT * FROM users", |(id, name)| User { id, name });
+    let result = conn.query_map("SELECT id, name, email FROM users", |(id, name, email)| User { id, name,email });
 
     match result {
         Ok(users) => Ok(users),
