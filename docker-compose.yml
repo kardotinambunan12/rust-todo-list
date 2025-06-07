@@ -23,7 +23,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: mysql://root@mysql:3306/todo_list
+#      DATABASE_URL: mysql://root@mysql:3306/todo_list
+      DATABASE_URL: mysql://root@203.194.112.1:3306/todo_list
 
 volumes:
   mysql_data:

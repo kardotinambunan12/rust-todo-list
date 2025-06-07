@@ -7,6 +7,7 @@ pub fn db_connection() -> PooledConn {
     println!("DATABASE_URL from env: {:?}", env::var("DATABASE_URL"));
 
     let url = env::var("DATABASE_URL").expect("DATABASE_URL not set in .env");
+    // let url = "mysql://root@203.194.112.1:3306/todo_list".to_string();
 
 
     let opts = Opts::from_url(&url).expect("Invalid database URL");
