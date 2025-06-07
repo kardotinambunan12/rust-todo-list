@@ -27,11 +27,11 @@ pub async fn create_user_register(register_request: RegisterRequest) -> Result<O
     println!("connection {:?}", conn);
 
     conn.exec_drop(
-        "INSERT INTO `todo-list`.users (email, password, nama_lengkap) VALUES (:email, :password, :nama_lengkap)",
+        "INSERT INTO `todo-list`.users (email, password, name) VALUES (:email, :password, :name)",
         params! {
             "email" => &register_request.email,
             "password" => &register_request.password,
-            "nama_lengkap" => &register_request.nama_lengkap,
+            "name" => &register_request.nama_lengkap,
         },
 
 
@@ -53,3 +53,5 @@ pub async fn create_user_register(register_request: RegisterRequest) -> Result<O
 
     Ok(Some(response))
 }
+
+
