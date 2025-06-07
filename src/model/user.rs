@@ -18,7 +18,7 @@ pub struct LoginResponse {
 pub struct RegisterRequest{
     pub email:String,
     pub password: String,
-    pub nama_lengkap:String,
+    pub name:String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

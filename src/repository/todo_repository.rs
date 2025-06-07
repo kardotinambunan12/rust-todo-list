@@ -35,7 +35,7 @@ pub async fn create_user(user: UserInput) -> Result<User, ApiError> {
     println!("connection {:?}", conn);
     println!("log name {}", user.name);
     conn.exec_drop(
-        "INSERT INTO `todo-list`.users (name) VALUES (:name)",
+        "INSERT INTO users (name) VALUES (:name)",
         params! { "name" => &user.name },
     )
     .map_err(|e| {
