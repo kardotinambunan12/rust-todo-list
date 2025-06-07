@@ -50,8 +50,8 @@ jobs:
 
             curl -sSL https://raw.githubusercontent.com/${{ github.repository }}/master/docker-compose.yml -o docker-compose.yml
             sudo docker pull getch12/todo-list:latest
-            sudo docker compose down -v
-            sudo docker compose up -d
+            sudo docker-compose down -v
+            sudo docker-compose up -d
 #            sudo docker rm -f todo-app || true
 #            sudo docker pull getch12/todo-list:latest
 #            sudo docker run -d -p 3000:3000 --name todo-app getch12/todo-list:latest
