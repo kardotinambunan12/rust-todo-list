@@ -11,4 +11,5 @@ pub struct User {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserInput {
     pub name: String,
+    pub email: String,
 }

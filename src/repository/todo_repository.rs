@@ -21,13 +21,13 @@ pub fn get_user_by_id(user_id: i32) -> Result<Option<User>, ApiError> {
     let mut conn = db_connection();
 
     let result = conn
-        .exec_first::<(i32, String), _, _>(
-            "SELECT id, name FROM users WHERE id = :id",
+        .exec_first::<(i32, String, String), _, _>(
+            "SELECT id, name, email FROM users WHERE id = :id",
             params! { "id" => user_id },
         )
         .map_err(|_| ApiError::InternalServerError)?;
 
-    Ok(result.map(|(id, name)| User { id, name }))
+    Ok(result.map(|(id, name,email)| User { id, name, email }))
 }
 
 pub async fn create_user(user: UserInput) -> Result<User, ApiError> {
@@ -35,8 +35,8 @@ pub async fn create_user(user: UserInput) -> Result<User, ApiError> {
     println!("connection {:?}", conn);
     println!("log name {}", user.name);
     conn.exec_drop(
-        "INSERT INTO users (name) VALUES (:name)",
-        params! { "name" => &user.name },
+        "INSERT INTO users (name, email) VALUES (:name, :email)",
+        params! { "name" => &user.name , "email"=>&user.email},
     )
     .map_err(|e| {
         eprintln!("DB Error: {}", e);
@@ -51,6 +51,7 @@ pub async fn create_user(user: UserInput) -> Result<User, ApiError> {
     Ok(User {
         id,
         name: user.name,
+        email: user.email,
     })
 }
 
