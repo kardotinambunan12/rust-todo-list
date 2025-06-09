@@ -17,6 +17,7 @@ pub async fn login_service(login_input: LoginInput) -> Result<LoginResponse, Api
         None => return Err(ApiError::BadRequest),
     };
     println!("User: {:?}", user);
+    println!("User: {:?}", login_input.password);
 
     if verify_password(&login_input.password, &user.password) {
         let (token, exp) =

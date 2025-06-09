@@ -11,6 +11,7 @@ pub fn hash_password(password: &str) ->String{
 }
 
 pub fn verify_password(password:&str, password_hash:&str) -> bool {
+
   hash_password(password) == password_hash
 
 }

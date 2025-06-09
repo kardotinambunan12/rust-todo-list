@@ -19,7 +19,7 @@ pub async fn login(Json(mut payload): Json<LoginInput>) -> Result<Json<LoginResp
     println!("Encrypted: {}", encrypted);
     println!("Decrypted: {}", decrypted);
 
-    payload.password = hash_password(&payload.password);
+    // payload.password = hash_password(&payload.password);
 
     let response  = login_service(payload).await?;
     Ok(Json(response))
