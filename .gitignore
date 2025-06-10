@@ -1,5 +1,8 @@
 /target
 .git
+.env
+docker-compose.yml
+DockerFile
 .gitignore
-#Dockerfile
+.github
 README.md
