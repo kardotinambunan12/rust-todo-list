@@ -8,7 +8,7 @@ use chrono::{Utc, Duration};
 static SECRET:&[u8]=b"secret";
 
 pub fn generate_token(email:&str)->Result<(String, usize)>{
-    let claims = Claims::new(email);
+    let claims = Claims::new(email, Duration::minutes(60));
     let exp = claims.exp;
     let token = encode(
         &Header::default(),
@@ -18,15 +18,16 @@ pub fn generate_token(email:&str)->Result<(String, usize)>{
    Ok((token, exp))
 }
 pub fn generate_refresh_token(email:&str)->Result<(String, usize)>{
-      let expiration = Utc::now()
-            .checked_add_signed(Duration::minutes(60))
-            .expect("invalid timestamp")
-            .timestamp();
-
-    let claims = Claims {
-        email: email.to_string(),
-        exp: expiration as usize,
-    };
+    let claims = Claims::new(email, Duration::hours(60));
+    //   let expiration = Utc::now()
+    //         .checked_add_signed(Duration::minutes(60))
+    //         .expect("invalid timestamp")
+    //         .timestamp();
+    //
+    // let claims = Claims {
+    //     email: email.to_string(),
+    //     exp: expiration as usize,
+    // };
 
 
     let token = encode(

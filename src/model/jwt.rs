@@ -10,9 +10,9 @@ pub struct Claims{
 }
 
 impl Claims {
-    pub fn new(email:&str)->Self{
+    pub fn new(email:&str, duration: Duration)->Self{
         let expiration = Utc::now()
-            .checked_add_signed(Duration::minutes(60))
+            .checked_add_signed(duration)
             .expect("invalid timestamp")
             .timestamp();
 
